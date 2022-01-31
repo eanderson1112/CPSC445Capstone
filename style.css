@@ -1,7 +1,71 @@
 .welcome {background-color: lightskyblue;
-    text-shadow: darkblue;
+    text-shadow: 2px 2px darkblue;
     text-align: center;
+    color: white;
     font-family: Helvetica, "Helvetica Neue", Arial, serif;
     border: dimgray;
     mso-border-shadow: yes;
+    padding: 14px 14px;
+}
+
+.background {
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pcmag.com%2Fpicks%2Fthe-best-digital-cameras&psig=AOvVaw09KtETpWKnfmRwR0tEulkP&ust=1643743354391000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKCboKjb3PUCFQAAAAAdAAAAABAD");
+}
+
+.topnav {
+    background-color: lightskyblue;
+    overflow: hidden;
+    box-shadow: dodgerblue;
+    font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: darkslateblue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: darkblue;
+    color: white;
+}
+
+.left {
+    float: left;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 3px solid black;
+}
+
+.right {
+    float: right;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 3px solid black;
+}
+
+.box_shadow {
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.button {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
