@@ -1,5 +1,5 @@
 .welcome {background-color: white;
-    text-shadow: 2px 2px black;
+    text-shadow: 3px 2px black;
     font-size: 20px;
     text-align: center;
     border-top-right-radius: 12px;
@@ -8,9 +8,9 @@
     font-family: Helvetica, "Helvetica Neue", Arial, serif;
     mso-border-shadow: yes;
     box-shadow: 6px 3px 3px black;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    border-top: 2px solid black;
+    /*border-left: 2px solid black;*/
+    /*border-right: 2px solid black;*/
+    /*border-top: 2px solid black;*/
     padding: 8px 18px;
 }
 
@@ -29,17 +29,14 @@
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     box-shadow: dodgerblue;
-    border-bottom: 2px solid black;
+    /*border-bottom: 2px solid black;*/
     float: none;
     list-style:none;
     margin: 0;
     padding: 0;
-    top: 3%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-left: 2px solid black;
+    /*border-left: 2px solid black;*/
     text-align: center;
-    border-right: 2px solid black;
+    /*border-right: 2px solid black;*/
     box-shadow: 6px 3px 3px black;
     font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
 }
@@ -85,8 +82,9 @@
     padding-right: 20px;
     grid-area: g;
     text-color: black;
-    border: 3px solid black;
+    border: 2px solid black;
     border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
     font-family: Helvetica, "Helvetica Neue", Arial, serif;
     background-color: white;
 }
@@ -99,8 +97,10 @@
     background-color: white;
     align-content: center;
     grid-area: i;
+    font-family: Helvetica, "Helvetica Neue", Arial, serif;
+    box-shadow: 3px 3px 3px black;
     alignment: center;
-    border: 3px solid black;
+    border: 2px solid black;
 }
 
 .box_shadow {
@@ -117,4 +117,20 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+input[type=text] {
+    font-size: 25px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+input[type=password] {
+    font-size: 25px;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    border-bottom: 2px solid dodgerblue;
 }

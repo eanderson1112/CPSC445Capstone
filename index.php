@@ -15,30 +15,29 @@
     <body class="background"><div class="wrapper">
     <div class="left">
         <h2>A couple of things you can do here</h2>
-        <h3>
+        <h4>
             <ul>
                 <li>View available gear</li>
                 <li>Check out items to use</li>
                 <li>Check in items</li>
                 <li>Check on item status</li>
             </ul>
-        </h3>
+        </h4>
     </div>
     <div class="right"><h2>LET'S GET STARTED</h2>
         <h4>Please enter your username and password</h4>
         <form action="index.php" method="post">
             <label>
                 <input type="text"
-                       name="username" placeholder="Username"
-                       required autofocus>
+                       name="username" placeholder="Username">
             </label>
             <br><br>
             <label>
                 <input type="password"
-                       name="password" placeholder="Password" required autofocus>
+                       name="password" placeholder="Password">
             </label>
             <br><br>
-            <input type="submit" class="button" value="submit" name="login">
+            <input type="submit" class="button" value="Submit" name="login">
     </form>
     </div></div></body>
 </html>
