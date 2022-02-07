@@ -1,21 +1,46 @@
-.welcome {background-color: lightskyblue;
-    text-shadow: 2px 2px darkblue;
+.welcome {background-color: white;
+    text-shadow: 2px 2px black;
+    font-size: 20px;
     text-align: center;
-    color: white;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    color: lightgray;
     font-family: Helvetica, "Helvetica Neue", Arial, serif;
-    border: dimgray;
     mso-border-shadow: yes;
-    padding: 14px 14px;
+    box-shadow: 6px 3px 3px black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    padding: 8px 18px;
 }
 
 .background {
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pcmag.com%2Fpicks%2Fthe-best-digital-cameras&psig=AOvVaw09KtETpWKnfmRwR0tEulkP&ust=1643743354391000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCKCboKjb3PUCFQAAAAAdAAAAABAD");
+    background-color: cornflowerblue;
+    background-repeat: no-repeat;
 }
 
 .topnav {
     background-color: lightskyblue;
     overflow: hidden;
+    position: relative;
+    /*top: 0;*/
+    /*left: 0;*/
+    transform: none;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
     box-shadow: dodgerblue;
+    border-bottom: 2px solid black;
+    float: none;
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    top: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-left: 2px solid black;
+    text-align: center;
+    border-right: 2px solid black;
+    box-shadow: 6px 3px 3px black;
     font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
 }
 
@@ -23,6 +48,7 @@
 .topnav a {
     float: left;
     color: darkslateblue;
+    text-align: center;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -41,17 +67,39 @@
     color: white;
 }
 
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    grid-auto-rows: 100px;
+    grid-template-areas:
+    "a b b c d d e"
+    "f g g h i i j"
+    "k l l m n n o";
+    align-items: start;
+}
+
 .left {
     float: left;
     padding-left: 30px;
-    padding-right: 30px;
+    padding-right: 20px;
+    grid-area: g;
+    text-color: black;
     border: 3px solid black;
+    border-radius: 15px;
+    font-family: Helvetica, "Helvetica Neue", Arial, serif;
+    background-color: white;
 }
 
 .right {
     float: right;
     padding-left: 30px;
     padding-right: 30px;
+    border-radius: 15px;
+    background-color: white;
+    align-content: center;
+    grid-area: i;
+    alignment: center;
     border: 3px solid black;
 }
 
@@ -64,6 +112,7 @@
     border: none;
     color: white;
     padding: 15px 32px;
+    cursor: pointer;
     text-align: center;
     text-decoration: none;
     display: inline-block;
