@@ -1,0 +1,14 @@
+{
+  "name": "vendor_name/ElijahAnderson",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "elijahanderson",
+      "email": "me@elijahanderson.info"
+    }
+  ],
+  "require": {
+  }
+}
