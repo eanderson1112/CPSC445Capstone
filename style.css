@@ -14,6 +14,13 @@
     padding: 8px 18px;
 }
 
+.link {
+    color: cornflowerblue;
+    text-shadow: 2px black;
+    text-decoration: none;
+}
+
+
 .background {
     background-color: cornflowerblue;
     background-repeat: no-repeat;
@@ -26,30 +33,33 @@
     /*top: 0;*/
     /*left: 0;*/
     transform: none;
+    text-display: none;
+    list-style: none;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     box-shadow: dodgerblue;
     /*border-bottom: 2px solid black;*/
     float: none;
-    list-style:none;
-    margin: 0;
-    padding: 0;
+    padding: 14px 14px;
     /*border-left: 2px solid black;*/
     text-align: center;
+    margin: 0;
     /*border-right: 2px solid black;*/
     box-shadow: 6px 3px 3px black;
     font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
-    float: left;
+    float: center;
     color: darkslateblue;
+    border: 0 !important;
     text-align: center;
-    text-align: center;
-    padding: 14px 16px;
+    padding: 14px 14px;
     text-decoration: none;
-    font-size: 17px;
+    list-style: none;
+    margin: 0;
+    font-size: 25px;
+    font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
 }
 
 /* Change the color of links on hover */
@@ -67,7 +77,7 @@
 .wrapper {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
+    gap: 3px;
     grid-auto-rows: 100px;
     grid-template-areas:
     "a b b c d d e"
@@ -76,11 +86,36 @@
     align-items: start;
 }
 
+.wrapper2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    grid-auto-rows: 100px;
+    grid-template-areas:
+    "a b b c"
+    "d e e f"
+    "g h h i";
+    align-items: start;
+}
+
 .left {
     float: left;
     padding-left: 30px;
     padding-right: 20px;
     grid-area: g;
+    text-color: black;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    font-family: Helvetica, "Helvetica Neue", Arial, serif;
+    background-color: white;
+}
+
+.center2 {
+    float: left;
+    padding-left: 30px;
+    padding-right: 20px;
+    grid-area: e;
     text-color: black;
     border: 2px solid black;
     border-radius: 15px;
@@ -133,4 +168,100 @@ input[type=password] {
     text-decoration: none;
     border: none;
     border-bottom: 2px solid dodgerblue;
+}
+
+/* Popup container */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
+/* Style the container for inputs */
+.container {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+}
+
+/* Add a red text color and an "x" icon when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10006;";
 }

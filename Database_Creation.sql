@@ -5,14 +5,17 @@ USE Inventory;
 DROP TABLE IF EXISTS Users CASCADE;
 CREATE TABLE Users
 (
-    userID INT AUTO_INCREMENT UNIQUE NOT NULL,
-    fName  VARCHAR(10)               NOT NULL,
-    lName  VARCHAR(15)               NOT NULL,
-    email  VARCHAR(50)               NOT NULL,
-    phone  VARCHAR(10)                       NOT NULL,
-    Constraint user_pk
-        PRIMARY KEY (userID)
-);
+    userName VARCHAR(255) NOT NULL,
+    fName    VARCHAR(10)  NOT NULL,
+    lName    VARCHAR(15)  NOT NULL,
+    email    varchar(255) NOT NULL,
+    pswd     VARCHAR(255) NOT NULL,
+    phone    VARCHAR(10)  NOT NULL,
+    CONSTRAINT user_pk
+        PRIMARY KEY (userName)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
 
 DROP TABLE IF EXISTS Inventory CASCADE;
 CREATE TABLE Inventory
@@ -31,22 +34,22 @@ CREATE TABLE Log
     itemID       INT                NOT NULL,
     productName  VARCHAR(50)        NOT NULL,
     checkOutDate DATE               NOT NULL,
-    userID       INT                NOT NULL,
+    userName     VARCHAR(255)       NOT NULL,
     fName        VARCHAR(10)        NOT NULL,
     lName        VARCHAR(15)        NOT NULL,
     email        VARCHAR(50)        NOT NULL,
     phone        VARCHAR(10)        NOT NULL,
     PRIMARY KEY (checkOutID),
     FOREIGN KEY (itemID) REFERENCES Inventory (itemID),
-    FOREIGN KEY (userID) REFERENCES Users (userID)
+    FOREIGN KEY (userName) REFERENCES Users (userName)
 );
 
 INSERT INTO Users
-VALUES (00001, 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu', '7577084183');
+VALUES ('eanderson1112', 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu', 'thisisatest', '7577084183');
 INSERT INTO Users
-VALUES (00002, 'Captain', 'Chris', 'captain.chris@cnu.edu', '7578675309');
+VALUES ('cchris1985', 'Captain', 'Chris', 'captain.chris@cnu.edu', 'apassword', '7578675309');
 INSERT INTO Users
-VALUES (00003, 'Chris', 'Kreider', 'chris.kreider@cnu.edu', '8005882300');
+VALUES ('ckreider', 'Chris', 'Kreider', 'chris.kreider@cnu.edu', 'somepassword', '8005882300');
 
 INSERT INTO Inventory
 VALUES (00001, 'Canon 90D', TRUE);
@@ -56,5 +59,5 @@ INSERT INTO Inventory
 VALUES (00003, 'Behringer B85', False);
 
 INSERT INTO Log
-VALUES (000001, 00002, 'Canon 90D', '2022-02-02', 00001, 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu',
+VALUES (000001, 00002, 'Canon 90D', '2022-02-02', 'eanderson1112', 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu',
         '7577084183');
