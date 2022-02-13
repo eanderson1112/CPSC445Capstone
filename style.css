@@ -1,10 +1,10 @@
-.welcome {background-color: white;
+.welcome {background-color: darkblue;
     text-shadow: 3px 2px black;
     font-size: 20px;
     text-align: center;
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
-    color: lightgray;
+    color: whitesmoke;
     font-family: Helvetica, "Helvetica Neue", Arial, serif;
     mso-border-shadow: yes;
     box-shadow: 6px 3px 3px black;
@@ -22,7 +22,9 @@
 
 
 .background {
-    background-color: cornflowerblue;
+    background-image: url('images/lensrentals-ultra-high-res.jpeg');
+    /*background-color: cornflowerblue;*/
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -154,6 +156,20 @@
     font-size: 16px;
 }
 
+.button2 {
+    background-color: cornflowerblue;
+    border: none;
+    float: right;
+    margin-right: 10px;
+    color: white;
+    padding: 7px 100px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 input[type=text] {
     font-size: 25px;
     border: none;
@@ -264,4 +280,26 @@ input[type=password] {
     position: relative;
     left: -35px;
     content: "&#10006;";
+}
+
+.container2 {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
+}
+
+table-bordered {
+    border: 1px solid #dee2e6
 }

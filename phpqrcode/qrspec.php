@@ -39,7 +39,7 @@
     define('QRCAP_REMINDER',     2);
     define('QRCAP_EC',           3);
 
-    class QRspec {
+    class qrspec        `` {
     
         public static $capacity = array(
             array(  0,    0, 0, array(   0,    0,    0,    0)),
