@@ -19,13 +19,12 @@ include("display_inventory.php");
 <body class="background">
 <div class="wrapper2">
     <div class="center2">
-        <div class="row">
             <div class="container2">
-                <table class="table table-bordered">
+                <table>
                     <thead>
-                    <th>Item ID</th>
-                    <th>Product Name</th>
-                    <th>Availability</th>
+                    <th class="width2">Item ID</th>
+                    <th class="width3">Product Name</th>
+                    <th class="width4">Availability</th>
                     </thead>
                     <tbody>
                     <?php
@@ -36,13 +35,14 @@ include("display_inventory.php");
                             <tr>
                                 <td><?php echo $itemID; ?></td>
                                 <td><?php echo $data['productName']; ?></td>
+                                <td><?php echo $data['availability']; ?></td>
                             </tr>
                             <?php
                             $itemID++;
                         }
                     }else{ ?>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <?php echo $fetchData; ?>
                         </td>
                     <tr>
@@ -52,8 +52,6 @@ include("display_inventory.php");
                     <br>
                 </table>
                 <br>
-            </div>
-        </div>
     </div>
 </div>
 </body>

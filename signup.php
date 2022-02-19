@@ -58,74 +58,7 @@
 </body>
 </html>
 
-<script>
-    const myInput = document.getElementById("psw");
-    const letter = document.getElementById("letter");
-    const capital = document.getElementById("capital");
-    const number = document.getElementById("number");
-    const length = document.getElementById("length");
-
-    // When the user clicks on the password field, show the message box
-    myInput.onfocus = function () {
-        document.getElementById("message").style.display = "block";
-    }
-
-    // When the user clicks outside of the password field, hide the message box
-    myInput.onblur = function () {
-        document.getElementById("message").style.display = "none";
-    }
-
-    // When the user starts to type something inside the password field
-    myInput.onkeyup = function () {
-// Validate lowercase letters
-        const lowerCaseLetters = /[a-z]/g;
-        if (myInput.value.match(lowerCaseLetters)) {
-            letter.classList.remove("invalid");
-            letter.classList.add("valid");
-        } else {
-            letter.classList.remove("valid");
-            letter.classList.add("invalid");
-        }
-
-// Validate capital letters
-        const upperCaseLetters = /[A-Z]/g;
-        if (myInput.value.match(upperCaseLetters)) {
-            capital.classList.remove("invalid");
-            capital.classList.add("valid");
-        } else {
-            capital.classList.remove("valid");
-            capital.classList.add("invalid");
-        }
-
-// Validate numbers
-        const numbers = /[0-9]/g;
-        if (myInput.value.match(numbers)) {
-            number.classList.remove("invalid");
-            number.classList.add("valid");
-        } else {
-            number.classList.remove("valid");
-            number.classList.add("invalid");
-        }
-
-// Validate length
-        if (myInput.value.length >= 8) {
-            length.classList.remove("invalid");
-            length.classList.add("valid");
-        } else {
-            length.classList.remove("valid");
-            length.classList.add("invalid");
-        }
-    }
-</script>
-
 <?php
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$email = $_POST['email'];
-$phone = $_POST['phone'];
-$uname = $_POST['username'];
-$pswd = $_POST['password'];
-
 $servername = "localhost:3306";
 $database = "Inventory";
 $username = "root";
@@ -137,18 +70,33 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-echo "Connected successfully";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    $sql = "INSERT INTO Users VALUES ('$uname','$fname', '$lname', '$email', '$pswd', '$phone')";
-
-    if (mysqli_query($conn, $sql)) {
-        echo "New record created successfully";
-    }
-    else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-mysqli_close($conn);
+else {
+    echo "Connected successfully";
 ?>
+    <br>
+<?php
+    if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+        echo "CRYPT_BLOWFISH is enabled!";
+    }else {
+        echo "CRYPT_BLOWFISH is not available";
+    }
 
+$fName = $_POST['fname'];
+$lName = $_POST['lname'];
+$email = $_POST['email'];
+$phone = $_POST['phone'];
+$uname = $_POST['username'];
+$pswd = $_POST['password'];
+
+$hashPass = password_hash($pswd, PASSWORD_DEFAULT);
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $sql = "INSERT INTO Users VALUES ('$uname','$fName', '$lName', '$email', '$hashPass', '$phone')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+}

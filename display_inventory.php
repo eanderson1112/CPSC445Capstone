@@ -1,8 +1,8 @@
 <?php
-include("database_connection.php");
+include("administrative_files/database_connection.php");
 $db = $conn;
 $tableName = "Inventory";
-$columns = ['itemID', 'productName'];
+$columns = ['itemID', 'productName', 'availability'];
 $fetchData = fetch_data($db, $tableName, $columns);
 function fetch_data($db, $tableName, $columns)
 {

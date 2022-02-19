@@ -23,6 +23,7 @@
             </ul>
         </h4>
     </div>
+
     <div class="right"><h2>LET'S GET STARTED</h2>
         <h4>Please enter your username and password</h4>
         <form action="index.php" method="post">
