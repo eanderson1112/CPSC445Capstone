@@ -6,9 +6,14 @@
         Department Of Creative Services
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
-    <div class="topnav">
-        <a href=index.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>
-    </div>
+
+    <?php
+    include("navigation.php");
+    ?>
+
+    <!--    <div class="topnav">-->
+<!--        <a href=index.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>-->
+<!--    </div>-->
 </head>
 <body class="background">
     <div class="wrapper2">
@@ -38,16 +43,5 @@
 </html>
 
 <?php
-$servername = "localhost:3306";
-$database = "Inventory";
-$username = "root";
-$password = "Beagle26!";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $database);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-else {
-    echo "Connec
+include("database_connection.php");

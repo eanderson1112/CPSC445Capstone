@@ -10,10 +10,14 @@ include("display_inventory.php");
         Department Of Creative Services
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
-    <div class="topnav">
-        <a href=check_out.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a
-                class="active" href=inventory.php>Inventory</a>
-    </div>
+
+    <?php
+    include("navigation.php");
+    ?>
+    <!--    <div class="topnav">-->
+<!--        <a href=check_out.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a-->
+<!--                class="active" href=inventory.php>Inventory</a>-->
+<!--    </div>-->
 </head>
 
 <body class="background">
