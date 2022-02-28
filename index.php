@@ -7,7 +7,8 @@
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
     <div class="topnav">
-        <a class="active" href=index.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>
+        <a class="active" href=index.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a
+                href=inventory.php>Inventory</a>
     </div>
 </head>
 <body class="background">
@@ -26,7 +27,7 @@
 
     <div class="right"><h2>LET'S GET STARTED</h2>
         <h4>Please enter your username and password</h4>
-        <form action="index.php" method="post">
+        <form action="" method="POST">
             <label>
                 <input type="text"
                        name="username" placeholder="Username">
@@ -46,29 +47,34 @@
 </html>
 
 <?php
+include("database_connection.php");
+session_start();
 
 $uname = $_POST['username'];
 $pswd = $_POST['password'];
 
-$servername = "localhost:3306";
-$username = "root";
-$password = "Beagle26!";
+// Define variables and initialize with empty values
+$username = $password = $confirm_password = "";
+$username_err = $password_err = $confirm_password_err = "";
 
-//// Define variables and initialize with empty values
-//$username = $password = $confirm_password = "";
-//$username_err = $password_err = $confirm_password_err = "";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($conn, $uname);
+    $password = mysqli_real_escape_string($conn, $pswd);
+    $query = "SELECT * FROM Users WHERE userName = '$username'";
+    $result = mysqli_query($conn, $query);
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            if (password_verify($password, $row["pswd"])) {
+                //return true;
+                $_SESSION["username"] = $username;
+                echo("ITS WORKING");
+                echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
+                exit();
+            } else {
+                echo '<script>alert("Wrong User Details")</script>';
+            }
+        }
+    } else {
+        echo '<script>alert("Wrong User Details")</script>';
+    }
 }
-echo "Connected successfully";
-
-//if ($_SERVER['REQUEST_METHOD'] == 'POST')
-
-
-
-

@@ -170,6 +170,18 @@
     font-size: 16px;
 }
 
+.button3 {
+    background-color: grey;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 input[type=text] {
     font-size: 25px;
     border: none;
@@ -178,7 +190,41 @@ input[type=text] {
     border-bottom: 2px solid dodgerblue;
 }
 
+input[type=radio] {
+    font-size: 25px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+input[type=number] {
+    font-size: 25px;
+    text-align: center;
+    margin-left: 15px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
 input[type=password] {
+    font-size: 25px;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+input[type=email] {
+    font-size: 25px;
+    outline: none;
+    text-decoration: none;
+    border: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+input[type=tel] {
     font-size: 25px;
     outline: none;
     text-decoration: none;
@@ -245,22 +291,6 @@ input[type=password] {
     padding: 20px;
 }
 
-/* The message box is shown when the user clicks on the password field */
-#message {
-    display:none;
-    background: #f1f1f1;
-    color: #000;
-    position: relative;
-    padding: 20px;
-    margin-top: 10px;
-}
-
-#message p {
-    padding: 10px 35px;
-    font-size: 18px;
-}
-
-/* Add a green text color and a checkmark when the requirements are right */
 .valid {
     color: green;
 }
