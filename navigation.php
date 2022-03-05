@@ -19,16 +19,12 @@ $loginst = 0;
 
 if ($_SESSION['username']) {
     $user_check = $_SESSION['username'];
-    $ses_sql = mysqli_query($database, "SELECT userName FROM Users WHERE userName='$user_check'");
+    $ses_sql = mysqli_query($database, "SELECT userName FROM Users WHERE userName='.$user_check.'");
     $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
-    ?>
-    <br>
-        <?php
-    $raw_sql="SELECT userName FROM Users WHERE userName='$user_check'";
-    echo $raw_sql;
-    ?>
-    <br>
-        <?php
+    ?><br><?php
+    $raw_sql="SELECT userName FROM Users WHERE userName='.$user_check.'";
+    echo ('Raw SQL: '.$raw_sql);
+    ?><br><?php
     echo ("Username: ".$_SESSION['username']);
     $login_user = $row['username'];
 

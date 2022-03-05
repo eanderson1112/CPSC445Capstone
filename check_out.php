@@ -1,5 +1,11 @@
 <?php
 session_start();
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+} else {
+    echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
+    die();
+}
 ?>
 <html lang="en">
 <head>
