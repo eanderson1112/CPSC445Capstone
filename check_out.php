@@ -15,13 +15,10 @@ if (isset($_SESSION["username"])) {
         Department Of Creative Services
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
-
     <?php
     include("navigation.php");
     ?>
-    <!--    <div class="topnav">-->
-<!--        <a href=index.php>Home</a><a class="active" href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>-->
-<!--    </div>-->
+
 </head>
 
 <body class="background">

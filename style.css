@@ -41,14 +41,13 @@
     border-bottom-right-radius: 12px;
     box-shadow: dodgerblue;
     /*border-bottom: 2px solid black;*/
-    float: none;
     padding: 14px 14px;
     /*border-left: 2px solid black;*/
     text-align: center;
     margin: 0;
     /*border-right: 2px solid black;*/
     box-shadow: 6px 3px 3px black;
-    font-family: Monospaced, "Helvetica Neue", Helvetica, serif;
+    font-family: sans-serif, Helvetica, "Helvetica Neue", Arial, serif;
 }
 
 .topnav a {
