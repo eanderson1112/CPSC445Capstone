@@ -71,7 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
             if (password_verify($password, $row["pswd"])) {
+                $query2 = "SELECT auth FROM Users WHERE userName = '$username'";
+                $authLevel = mysqli_query($conn, $query2);
                 //return true;
+                $_SESSION["authentication"] = $authLevel;
                 $_SESSION["username"] = $uname;
                 echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php';</script>";
                 exit();

@@ -31,7 +31,7 @@
                 <input type="text" placeholder="Product Name" name="itemName">
             </label>
                 <label>
-                <input type="number" id="amount" name="amount" value="ammount" placeholder="Count">
+                <input type="number" id="amount" name="amount" value="amount" placeholder="Count">
                 </label>
                     <br><br>
                 <p>Is this product under warranty?</p>
@@ -51,4 +51,24 @@
 
 <?php
 
+$productName = $_POST['itemName'];
+$productCout = $_POST['amount'];
+$warrantyStatus = $_POST['warrantyStatus'];
+
+if ($warrantyStatus = "yes"){
+    $warrantyStatus = TRUE;
+}
+else {
+    $warrantyStatus = FALSE;
+}
+
 include("database_connection.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+    $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $productCout)";
+
+if (mysqli_query($conn, $sql)) {
+    echo "<script>alert('Item Added To Database')</script>";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}

@@ -11,19 +11,20 @@ if (isset($_SESSION["username"])) {
 <head>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+
     <title>
         Department Of Creative Services
     </title>
-    <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
+
+    <div class="welcome">
+        <h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1>
+    </div>
+
     <?php
     include("navigation.php");
     ?>
-
 </head>
-
 <body class="background">
-
-</body>
 <div class="wrapper2">
     <div class="center2">
         <h3>Please scan the barcode attached to the item you are trying to check out. </h3>
@@ -36,6 +37,7 @@ if (isset($_SESSION["username"])) {
             <br><br>
     </div>
 </div>
+</body>
 </html>
 
 <?php

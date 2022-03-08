@@ -11,6 +11,7 @@ CREATE TABLE Users
     email    varchar(255) UNIQUE NOT NULL,
     pswd     VARCHAR(255) NOT NULL,
     salt     VARCHAR(255) NOT NULL,
+    auth     VARCHAR(30) NOT NULL DEFAULT 'Standard',
     phone    VARCHAR(10) NOT NULL,
     CONSTRAINT user_pk
         PRIMARY KEY (userName)

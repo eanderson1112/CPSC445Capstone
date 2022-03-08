@@ -70,7 +70,7 @@ $hashPass = password_hash($pswd, $salt);
 include('database_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    $sql = "INSERT INTO Users VALUES ('$uname','$fName', '$lName', '$email', '$hashPass', '$salt', '$phone')";
+    $sql = "INSERT INTO Users VALUES ('$uname','$fName', '$lName', '$email', '$hashPass', '$salt', 'Standard', '$phone')";
 
 if (mysqli_query($conn, $sql)) {
 //    echo "New record created successfully";
