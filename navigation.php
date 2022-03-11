@@ -16,11 +16,11 @@ $loginst = NULL;
 
 ////Checks to see if a username that is logged in the $_SESSION['username'] is in the database
 if (isset($_SESSION["username"])) {
-    if ($_SESSION["authentication"] = "Admin") {
-        $loginst = 2;
-    }
     if ($_SESSION["authentication"] = "Standard") {
         $loginst = 1;
+    }
+    else if ($_SESSION["authentication"] = "Admin") {
+        $loginst = 2;
     }
     else {
         $loginst = 0;
