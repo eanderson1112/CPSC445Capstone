@@ -1,5 +1,7 @@
 <?php
+// Initializes session
 session_start();
+// All the HTML stuff
 ?>
 <html lang="en">
 <head>
@@ -11,6 +13,7 @@ session_start();
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
 
     <?php
+    // Pulls the Navigation top nav layout
     include("navigation.php");
     ?>
     <!--    <div class="topnav">-->
@@ -54,8 +57,10 @@ session_start();
 </html>
 
 <?php
+// Requests the connection to the MySQL database
 include("database_connection.php");
 
+// Assigns the username and passwords to variables for later use
 $uname = $_POST['username'];
 $pswd = $_POST['password'];
 
@@ -63,26 +68,39 @@ $pswd = $_POST['password'];
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 
+// If form has been submitted, perform action
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    /** @var $conn */
+
+    // Cleans the inputs
     $username = mysqli_real_escape_string($conn, $uname);
     $password = mysqli_real_escape_string($conn, $pswd);
+
+    //Performs SQL query
     $query = "SELECT * FROM Users WHERE userName = '$username'";
     $result = mysqli_query($conn, $query);
+
+    // Goes column by column in the Users table to request values.
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
+            // Password verification
             if (password_verify($password, $row["pswd"])) {
+                // Perform SQL query to determine the level of authentication a user has
                 $query2 = "SELECT auth FROM Users WHERE userName = '$username'";
                 $authLevel = mysqli_query($conn, $query2);
-                //return true;
+                // Assigns session variables with username and authentication level.
                 $_SESSION["authentication"] = $authLevel;
                 $_SESSION["username"] = $uname;
+                // Redirects user to the check_out page once authentication has been performed
                 echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php';</script>";
                 exit();
             } else {
+                // Warns user of incorrect field entry
                 echo '<script>alert("Wrong password")</script>';
             }
         }
     } else {
+        // If username does not exist, user login warning will appear.
         echo '<script>alert("User Does Not Exist")</script>';
     }
 }
