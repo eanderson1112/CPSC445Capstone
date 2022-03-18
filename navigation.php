@@ -10,20 +10,25 @@
 // Connects to the database
 include("database_connection.php");
 //echo($_SESSION['username']);
+//echo("Authentication Status".$_SESSION['authentication']);
+$auth_status = $_SESSION['authentication'];
 // Initialize Session
 session_start();
 $loginst = NULL;
 
 ////Checks to see if a username that is logged in the $_SESSION['username'] is in the database
 if (isset($_SESSION["username"])) {
-    if ($_SESSION["authentication"] = "Standard") {
+    if ($auth_status == 'Standard' ) {
         $loginst = 1;
+//        echo "loginst = ".$loginst;
     }
-    else if ($_SESSION["authentication"] = "Admin") {
+    else if ($auth_status == 'Admin') {
         $loginst = 2;
+//        echo "loginst = ".$loginst;
     }
     else {
         $loginst = 0;
+//        echo "loginst = ".$loginst;
         echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
         die();
     }

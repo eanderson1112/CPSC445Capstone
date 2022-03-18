@@ -1,3 +1,19 @@
+<?php
+// Initialize Session Variables
+session_start();
+
+if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
+    $username = $_SESSION["username"];
+}
+else {
+    // Redirects user if no user is logged in\
+    echo '<script>alert("You are not authorized to access this page\n\nRedirecting you now...")</script>';
+    echo "<script>window.location = 'check_out.php';</script>";
+    die();
+}
+// All the HTML Form elements
+?>
+
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
@@ -8,16 +24,9 @@
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
 
     <?php
+    // Retrieves the top nav bar layout and links from navigation.php
     include("navigation.php");
-    session_start();
-    if (isset($_SESSION["username"])) {
-        $username = $_SESSION["username"];
-    } else {
-        echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
-        die();
-    }
     ?>
-
     <!--    <div class="topnav">-->
 <!--        <a href=index.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>-->
 <!--    </div>-->

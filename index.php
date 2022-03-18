@@ -83,14 +83,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Goes column by column in the Users table to request values.
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
+            $_SESSION["authentication"] = $row['auth'];
             // Password verification
             if (password_verify($password, $row["pswd"])) {
                 // Perform SQL query to determine the level of authentication a user has
                 $query2 = "SELECT auth FROM Users WHERE userName = '$username'";
                 $authLevel = mysqli_query($conn, $query2);
                 // Assigns session variables with username and authentication level.
-                $_SESSION["authentication"] = $authLevel;
-                $_SESSION["username"] = $uname;
+                $_SESSION["username"] = $username;
                 // Redirects user to the check_out page once authentication has been performed
                 echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php';</script>";
                 exit();

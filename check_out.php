@@ -2,6 +2,7 @@
 
 // Initialze Session Variables
 session_start();
+
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 } else {
@@ -50,12 +51,39 @@ if (isset($_SESSION["username"])) {
 <?php
 //Set the barcode_value with value of the POST variable
 $barcode_value = $_POST['barcode'];
+$userCheck = $_SESSION["username"];
+$authenticationLevel = $_SESSION['authentication'];
 
 // Testing purposes
-echo("Barcode Value: " . $barcode_value);
+echo("\nUsername: ".$userCheck);
+echo("\nBarcode Value: " . $barcode_value);
 
 // Includes the database connection file to initialize connection with MySQL database
 include("database_connection.php");
+
+// Calls the session variable of "username" to determine the user to lookup in "Users" table
+// Performs SQL query
+$sql2= "SELECT * FROM Users WHERE userName = '$userCheck'";
+echo("\nSQL Query: ".$sql2);
+$result2 = mysqli_query($conn, $sql2);
+echo("\nResult2: ".$result2);
+
+// Assigns variables to values pulled from Users Table
+if (mysqli_num_rows($result2) > 0) {
+    echo("\nEntered If Statement");
+    while ($row2 = mysqli_fetch_assoc($result2)) {
+        echo("\nEntered While Statemnt");
+        $fName = $row2['fName'];
+        echo("\nfName: " . $fName);
+        $lName = $row2['lName'];
+        echo("\nlName: " . $lName);
+        $email = $row2['email'];
+        echo("\nemail: " . $email);
+        $phone = $row2['phone'];
+        echo("\nphone: " . $phone);
+        echo("\nValues Linked");
+    }
+}
 
 // Checks to see if form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -75,34 +103,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        // Calls the session variable of "username" to determine the user to lookup in "Users" table
-        $username = $_SESSION['username'];
-        // Performs SQL query
-        $sql_query = "SELECT * FROM Users WHERE userName = $username";
-        $result2 = mysqli_query($conn, $sql_query);
-
-        // Assigns variables to values pulled from Users Table
-        if (mysqli_num_rows($result2) > 0) {
-            while ($row = mysqli_fetch_assoc($result2)) {
-                $fName = $row['fName'];
-                echo("fName: " . $fName);
-                $lName = $row['lName'];
-                echo("lName: " . $lName);
-                $email = $row['email'];
-                echo("email: " . $email);
-                $phone = $row['phone'];
-                echo("phone: " . $phone);
-                echo("Values Linked");
-            }
-        }
-
         // Verifies that count of Inventory is not 0
         if ($availability_result <= 0) {
             echo "<script> alert('This item is currently unavailable')</script>";
             echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php'</script>";
         } else {
             // Inserts values into "Logs" table
-            $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', current_date, '$username', '$fName', '$lName', '$email', '$phone')";
+            $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), NULL, '$fName', '$lName', '$email', '$phone')";
             if (mysqli_query($conn, $sql)) {
                 echo "New record created successfully";
             } else {
