@@ -222,7 +222,7 @@ input[type=radio] {
 
 input[type=number] {
     font-size: 25px;
-    text-align: center;
+    text-align: left;
     margin-left: 15px;
     border: none;
     text-decoration: none;

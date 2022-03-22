@@ -93,8 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result1) > 0) {
 //            echo("Entered IF");
             while ($row = mysqli_fetch_assoc($result1)) {
-                $updatedCount = $row['availability'] - $removeAmount;
+                if($row['availability'] <= $removeAmount){
+                    echo '<script>alert("You are attempting to remove more items then currently available\nPlease Try again")</script>';
+                    echo '<script>window.location= "remove_item.php"</script>';
+                }
+                else {
+                    $updatedCount = $row['availability'] - $removeAmount;
 //                echo("Updated Count: " . $updatedCount);
+                }
             }
 //            echo("Updated Count: " . $updatedCount);
 //    echo($newCount);

@@ -83,9 +83,9 @@ if (isset($_POST['AddItem'])){
         $updatedAvailability = null;
         while ($row = mysqli_fetch_assoc($result)) {
             $updatedAvailability = $row['availability'] + $productCount;
-            echo("Updated Availability: ".$updatedAvailability);
+//            echo("Updated Availability: ".$updatedAvailability);
         }
-        echo("Updated Availability: ".$updatedAvailability);
+//        echo("Updated Availability: ".$updatedAvailability);
         $query2 = "UPDATE Inventory SET availability = $updatedAvailability WHERE productName = '".$productName."'";
         $result2 = mysqli_query($conn, $query2);
 
@@ -93,7 +93,7 @@ if (isset($_POST['AddItem'])){
     else {
         $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $productCount)";
         $result3 = mysqli_query($conn, $sql);
-        echo("Result3: ".$result3);
+//        echo("Result3: ".$result3);
         echo "<script>alert('Item Added To Database')</script>";
     }
 }
