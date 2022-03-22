@@ -50,8 +50,8 @@ else {
                 <label for="no">No</label><br>
                 <br>
                 <br><br>
-                <input type="submit" class="button" value="Submit" name="Add Item">
-                <input type="reset" class="button3" value="Clear" name="Clear Fields">
+                <input type="submit" class="button" value="Submit" name="AddItem">
+                <input type="reset" class="button3" value="Clear" name="ClearFields">
             </form>
         </div>
     </div>
@@ -60,24 +60,43 @@ else {
 
 <?php
 
-$productName = $_POST['itemName'];
-$productCout = $_POST['amount'];
-$warrantyStatus = $_POST['warrantyStatus'];
-
-if ($warrantyStatus = "yes"){
-    $warrantyStatus = TRUE;
-}
-else {
-    $warrantyStatus = FALSE;
-}
-
 include("database_connection.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-    $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $productCout)";
+if (isset($_POST['AddItem'])){
+    $productName = $_POST['itemName'];
+    $productCount = $_POST['amount'];
+    $warrantyStatus = $_POST['warrantyStatus'];
 
-if (mysqli_query($conn, $sql)) {
-    echo "<script>alert('Item Added To Database')</script>";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    if ($warrantyStatus = "yes"){
+        $warrantyStatus = TRUE;
+    }
+    else {
+        $warrantyStatus = FALSE;
+    }
+
+//    echo("Submit Button Selected");
+
+    $query = "SELECT * FROM Inventory WHERE productName = '".$productName."'";
+    /** @var $conn */
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0) {
+        $updatedAvailability = null;
+        while ($row = mysqli_fetch_assoc($result)) {
+            $updatedAvailability = $row['availability'] + $productCount;
+            echo("Updated Availability: ".$updatedAvailability);
+        }
+        echo("Updated Availability: ".$updatedAvailability);
+        $query2 = "UPDATE Inventory SET availability = $updatedAvailability WHERE productName = '".$productName."'";
+        $result2 = mysqli_query($conn, $query2);
+
+    }
+    else {
+        $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $productCount)";
+        $result3 = mysqli_query($conn, $sql);
+        echo("Result3: ".$result3);
+        echo "<script>alert('Item Added To Database')</script>";
+    }
 }
+//else {
+//    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+//}

@@ -50,38 +50,41 @@ if (isset($_SESSION["username"])) {
 
 <?php
 //Set the barcode_value with value of the POST variable
-$barcode_value = $_POST['barcode'];
+if(isset($_POST['Check_Out'])) {
+    $barcode_value = $_POST['barcode'];
+}
+
 $userCheck = $_SESSION["username"];
 $authenticationLevel = $_SESSION['authentication'];
 
 // Testing purposes
-echo("\nUsername: ".$userCheck);
-echo("\nBarcode Value: " . $barcode_value);
+//echo("\nUsername: ".$userCheck);
+//echo("\nBarcode Value: " . $barcode_value);
 
 // Includes the database connection file to initialize connection with MySQL database
 include("database_connection.php");
 
 // Calls the session variable of "username" to determine the user to lookup in "Users" table
 // Performs SQL query
-$sql2= "SELECT * FROM Users WHERE userName = '$userCheck'";
-echo("\nSQL Query: ".$sql2);
-$result2 = mysqli_query($conn, $sql2);
-echo("\nResult2: ".$result2);
+$query = "SELECT * FROM Users WHERE userName = '".$userCheck."'";
+//echo ("\nQuery string: ".$query);
+$result2 = mysqli_query($conn, $query);
+//echo ("\nMysqli result: ".mysqli_num_rows($result2));
 
 // Assigns variables to values pulled from Users Table
 if (mysqli_num_rows($result2) > 0) {
-    echo("\nEntered If Statement");
+//    echo("\nEntered If Statement");
     while ($row2 = mysqli_fetch_assoc($result2)) {
-        echo("\nEntered While Statemnt");
+//        echo("\nEntered While Statemnt");
         $fName = $row2['fName'];
-        echo("\nfName: " . $fName);
+//        echo("\nfName: " . $fName);
         $lName = $row2['lName'];
-        echo("\nlName: " . $lName);
+//        echo("\nlName: " . $lName);
         $email = $row2['email'];
-        echo("\nemail: " . $email);
+//        echo("\nemail: " . $email);
         $phone = $row2['phone'];
-        echo("\nphone: " . $phone);
-        echo("\nValues Linked");
+//        echo("\nphone: " . $phone);
+//        echo("\nValues Linked");
     }
 }
 
@@ -89,17 +92,21 @@ if (mysqli_num_rows($result2) > 0) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ensures that form is not empty and has data
     if ($_POST['barcode'] != NULL) {
+        $availability_result = null;
         // Performs SQL query to retrieve all needed information from Inventory table
         $sql = "SELECT * FROM Inventory WHERE itemID = $barcode_value";
         /** @var $conn */ //Initialized under database_connection.php
         $result = mysqli_query($conn, $sql);
         // Goes through the rows and pulls data from each column
         if (mysqli_num_rows($result) > 0) {
+//            echo("Entered If Statement: ");
             // output data of each row
             while ($row = mysqli_fetch_assoc($result)) {
+//                echo("Entered While Loop: ");
                 $itemID_result = $row['itemID'];
                 $productName_result = $row['productName'];
                 $availability_result = $row['availability'];
+//                echo("availability: ".$availability_result);
             }
         }
 
@@ -111,14 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Inserts values into "Logs" table
             $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), NULL, '$fName', '$lName', '$email', '$phone')";
             if (mysqli_query($conn, $sql)) {
-                echo "New record created successfully";
+//                echo "New record created successfully";
             } else {
                 // Error checking
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             //If values is added, then count is subtracted by 1
             $availability_result -= 1;
-            echo("Current Count: " . $availability_result);
+//            echo("Current Count: " . $availability_result);
             $update_count = "UPDATE Inventory SET availability = $availability_result WHERE itemID = $barcode_value";
             mysqli_query($conn, $update_count);
 
