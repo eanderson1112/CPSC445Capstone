@@ -20,15 +20,88 @@ die();
     include("navigation.php");
     ?>
 
-    <!--    <div class="topnav">-->
-<!--        <a href=index.php>Home</a><a href=check_out.php>Check Out</a><a class="active" href=check_in.php>Check In</a><a href=inventory.php>Inventory</a>-->
-<!--    </div>-->
 </head>
 
 <body class="background">
-
+<div class="wrapper2">
+    <div class="center2">
+        <h3>Please scan the barcode attached to the item you are trying to check in. </h3>
+        <form action="" method="POST">
+            <label>
+                <input type="text"
+                       name="barcode" placeholder="Please Scan Item">
+            </label>
+            <label>
+                <input type="submit" class="button2" value="Submit" name="Check_In">
+            </label>
+        </form>
+    </div>
+</div>
 </body>
 
 </html>
 
 <?php
+
+//Set the barcode_value with value of the POST variable
+$barcode_value = NULL;
+$email = NULL;
+$updatedCount = NULL;
+
+if(isset($_POST['Check_In'])) {
+    $barcode_value = $_POST['barcode'];
+}
+
+$userCheck = $_SESSION["username"];
+$authenticationLevel = $_SESSION['authentication'];
+
+// Testing purposes
+//echo("\nUsername: ".$userCheck);
+//echo("\nBarcode Value: " . $barcode_value);
+
+// Includes the database connection file to initialize connection with MySQL database
+include("database_connection.php");
+
+$query = "SELECT * FROM Users WHERE userName = '".$userCheck."'";
+/** @var $conn */
+$result = mysqli_query($conn, $query);
+
+if (mysqli_num_rows($result) > 0) {
+    while ($row2 = mysqli_fetch_assoc($result)) {
+        $email = $row2['email'];
+    }
+}
+
+// Checks to see if form has been submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Ensures that form is not empty and has data
+    if ($_POST['barcode'] != NULL) {
+
+        $query2 = "SELECT * FROM Log WHERE itemID = $barcode_value AND email = '".$email."'";
+        $result2 = mysqli_query($conn, $query2);
+
+        if (mysqli_num_rows($result2) > 0) {
+            $query3 = "UPDATE Log SET checkInDateTime = NOW() WHERE itemID = $barcode_value AND email = '".$email."'";
+            mysqli_query($conn, $query3);
+
+            $query4 = "SELECT * FROM Inventory WHERE itemID = $barcode_value";
+            $result4 = mysqli_query($conn, $query4);
+
+            if (mysqli_num_rows($result4) > 0) {
+                while ($row3 = mysqli_fetch_assoc($result4)) {
+                    $updatedCount = $row3['availability'] + 1;
+                    $query5 = "UPDATE Inventory SET availability = $updatedCount WHERE itemID = $barcode_value";
+                    mysqli_query($conn, $query5);
+                }
+            }
+        }
+        else{
+            echo '<script>alert("No record exists for this item/user combination")</script>';
+        }
+    } else {
+        echo '<script>alert("Please scan a barcode or enter a valid value")</script>';
+        exit();
+    }
+}
+mysqli_close($conn);

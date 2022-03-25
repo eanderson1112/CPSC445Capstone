@@ -57,34 +57,22 @@ if(isset($_POST['Check_Out'])) {
 $userCheck = $_SESSION["username"];
 $authenticationLevel = $_SESSION['authentication'];
 
-// Testing purposes
-//echo("\nUsername: ".$userCheck);
-//echo("\nBarcode Value: " . $barcode_value);
-
 // Includes the database connection file to initialize connection with MySQL database
 include("database_connection.php");
 
 // Calls the session variable of "username" to determine the user to lookup in "Users" table
 // Performs SQL query
 $query = "SELECT * FROM Users WHERE userName = '".$userCheck."'";
-//echo ("\nQuery string: ".$query);
+/** @var  $conn */
 $result2 = mysqli_query($conn, $query);
-//echo ("\nMysqli result: ".mysqli_num_rows($result2));
 
 // Assigns variables to values pulled from Users Table
 if (mysqli_num_rows($result2) > 0) {
-//    echo("\nEntered If Statement");
     while ($row2 = mysqli_fetch_assoc($result2)) {
-//        echo("\nEntered While Statemnt");
         $fName = $row2['fName'];
-//        echo("\nfName: " . $fName);
         $lName = $row2['lName'];
-//        echo("\nlName: " . $lName);
         $email = $row2['email'];
-//        echo("\nemail: " . $email);
         $phone = $row2['phone'];
-//        echo("\nphone: " . $phone);
-//        echo("\nValues Linked");
     }
 }
 
@@ -106,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $itemID_result = $row['itemID'];
                 $productName_result = $row['productName'];
                 $availability_result = $row['availability'];
+                echo "Availability: ".$availability_result;
 //                echo("availability: ".$availability_result);
             }
         }
@@ -113,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verifies that count of Inventory is not 0
         if ($availability_result <= 0) {
             echo "<script> alert('This item is currently unavailable')</script>";
-            echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php'</script>";
+            echo "<script>window.location = 'check_out.php'</script>";
         } else {
             // Inserts values into "Logs" table
             $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), NULL, '$fName', '$lName', '$email', '$phone')";
