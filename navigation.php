@@ -57,7 +57,7 @@ else if ($loginst == 2) { ?>
 } else {
     // This is the look for users who are not logged in
     ?>
-    <div class="topnav">
-        <a href="mailto:me@elijahanderson.info">Email</a>
-    </div>
+<!--    <div class="topnav">-->
+<!--        <a href="mailto:me@elijahanderson.info">Email</a>-->
+<!--    </div>-->
 <?php } ?>
