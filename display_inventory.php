@@ -1,5 +1,6 @@
 <?php
-include("administrative_files/database_connection.php");
+include("database_connection.php");
+/** @var $conn */
 $db = $conn;
 $tableName = "Inventory";
 $columns = ['itemID', 'productName', 'availability'];

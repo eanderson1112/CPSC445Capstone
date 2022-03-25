@@ -78,21 +78,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ensures that form is not empty and has data
     if ($_POST['barcode'] != NULL) {
 
-        $query2 = "SELECT * FROM Log WHERE itemID = $barcode_value AND email = '".$email."'";
+        $query2 = "SELECT * FROM Log WHERE itemID = $barcode_value AND email = '".$email."' ORDER BY checkOutDateTime DESC LIMIT 1";
         $result2 = mysqli_query($conn, $query2);
 
+        $checkInDateExists = NULL;
+
         if (mysqli_num_rows($result2) > 0) {
-            $query3 = "UPDATE Log SET checkInDateTime = NOW() WHERE itemID = $barcode_value AND email = '".$email."'";
-            mysqli_query($conn, $query3);
+            while ($row3 = mysqli_fetch_assoc($result2)){
+                $checkInDateExists = $row3['checkInDateTime'];
+                break;
+            }
+        }
+
+        if (mysqli_num_rows($result2) > 0) {
 
             $query4 = "SELECT * FROM Inventory WHERE itemID = $barcode_value";
             $result4 = mysqli_query($conn, $query4);
 
             if (mysqli_num_rows($result4) > 0) {
-                while ($row3 = mysqli_fetch_assoc($result4)) {
-                    $updatedCount = $row3['availability'] + 1;
-                    $query5 = "UPDATE Inventory SET availability = $updatedCount WHERE itemID = $barcode_value";
-                    mysqli_query($conn, $query5);
+                if($checkInDateExists == NULL) {
+                    echo "Check in date is Null";
+
+                    $query3 = "UPDATE Log SET checkInDateTime = NOW() WHERE itemID = $barcode_value AND email = '".$email."'";
+                    mysqli_query($conn, $query3);
+
+                    while ($row3 = mysqli_fetch_assoc($result4)) {
+                        $updatedCount = $row3['availability'] + 1;
+                        $query5 = "UPDATE Inventory SET availability = $updatedCount WHERE itemID = $barcode_value";
+                        mysqli_query($conn, $query5);
+                    }
+                }
+                else {
+                    echo "Check out date already exists";
+                    echo '<script>alert("This item has already been returned")</script>';
+                    echo '<script>window.location = "check_in.php"</script>';
                 }
             }
         }
