@@ -50,7 +50,11 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
                             <td><?php echo $data['itemID']; ?></td>
                             <td><?php echo $data['productName']; ?></td>
                             <td><?php echo date_format(date_create($data['checkOutDateTime']),"d-M, Y g:i:s A"); ?></td>
-                            <td><?php echo date_format(date_create($data['checkInDateTime']), "d-M, Y g:i:s A"); ?></td>
+                            <td><?php if ($data['checkInDateTime'] == NULL) {
+                                    echo "<i style='color: red'>Checked Out</i>";
+                                } else {
+                                    echo date_format(date_create($data['checkInDateTime']), "d-M, Y g:i:s A");
+                                }?></td>
                             <td><?php echo $data['fName']; ?></td>
                             <td><?php echo $data['lName']; ?></td>
                             <td><a href="mailto:<?php echo $data['email']; ?>"><?php echo $data['email']; ?></a></td>
