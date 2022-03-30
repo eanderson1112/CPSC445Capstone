@@ -1,9 +1,9 @@
 <?php
-include("display_log.php");
+include("display_log_standard.php");
 
 session_start();
 
-if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
+if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
 } else {
     echo "<script>window.location = 'index.php';</script>";
@@ -19,30 +19,20 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
         Department Of Creative Services
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
-
     <?php
     include("navigation.php");
     ?>
-    <!--    <div class="topnav">-->
-    <!--        <a href=check_out.php>Home</a><a href=check_out.php>Check Out</a><a href=check_in.php>Check In</a><a-->
-    <!--                class="active" href=inventory.php>Inventory</a>-->
-    <!--    </div>-->
 </head>
-
 <body class="background">
 <div class="wrapper3">
     <div class="center3">
         <div class="container2">
             <table>
                 <thead>
-                <th class="width1">Item ID</th>
+                <th class="width2">Item ID</th>
                 <th class="width5">Product Name</th>
                 <th class="width5">Check Out Date</th>
                 <th class="width5">Check In Date</th>
-                <th class="width4">First Name</th>
-                <th class="width4">Last Name</th>
-                <th class="width5">Email</th>
-                <th class="width4">Phone</th>
                 </thead>
                 <tbody>
                 <?php
@@ -57,10 +47,6 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
                             <td><?php echo $data['productName']; ?></td>
                             <td><?php echo date_format(date_create($data['checkOutDate']),"d-M, Y g:i A"); ?></td>
                             <td><?php echo date_format(date_create($data['checkInDate']), "d-M, Y g:i A"); ?></td>
-                            <td><?php echo $data['fName']; ?></td>
-                            <td><?php echo $data['lName']; ?></td>
-                            <td><a href="mailto:<?php echo $data['email']; ?>"><?php echo $data['email']; ?></a></td>
-                            <td><a href="tel:<?php echo $data['phone']; ?>"><?php echo $data['phone']; ?></a></td>
                         </tr>
                         <?php
                         $itemID++;

@@ -1,6 +1,14 @@
 <?php
 // Initializes session
 session_start();
+
+if (!isset($_SESSION["username"])) {
+    $_SESSION['username'] = NULL;
+} else {
+    echo "<script>window.location = 'check_out.php';</script>";
+    die();
+}
+
 // All the HTML stuff
 ?>
     <html lang="en">
@@ -84,6 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_array($result)) {
             $_SESSION["authentication"] = $row['auth'];
+            $_SESSION["email"] = $row['email'];
             // Password verification
             if (password_verify($password, $row["pswd"])) {
                 // Perform SQL query to determine the level of authentication a user has
