@@ -73,7 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO Users VALUES ('$uname','$fName', '$lName', '$email', '$hashPass', '$salt', 'Standard', '$phone')";
     if (mysqli_query($conn, $sql)) {
 //    echo "New record created successfully";
-        echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
+        echo '<script>alert("New user created \n\n Redirecting you to login screen")</script>';
+        echo "<script>window.location = 'index.php';</script>";
         exit();
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);

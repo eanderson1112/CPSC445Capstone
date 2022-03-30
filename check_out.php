@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //            echo("Current Count: " . $availability_result);
             $update_count = "UPDATE Inventory SET availability = $availability_result WHERE itemID = $barcode_value";
             mysqli_query($conn, $update_count);
-
+            echo "<script>alert('Item has been checked out, and has been logged')</script>";
         }
 
     } else {

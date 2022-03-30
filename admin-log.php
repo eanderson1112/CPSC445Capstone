@@ -49,8 +49,8 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
                         <tr>
                             <td><?php echo $itemID; ?></td>
                             <td><?php echo $data['productName']; ?></td>
-                            <td><?php echo date_format(date_create($data['checkOutDate']),"d-M, Y g:i A"); ?></td>
-                            <td><?php echo date_format(date_create($data['checkInDate']), "d-M, Y g:i A"); ?></td>
+                            <td><?php echo date_format(date_create($data['checkOutDateTime']),"d-M, Y g:i A"); ?></td>
+                            <td><?php echo date_format(date_create($data['checkInDateTime']), "d-M, Y g:i A"); ?></td>
                             <td><?php echo $data['fName']; ?></td>
                             <td><?php echo $data['lName']; ?></td>
                             <td><a href="mailto:<?php echo $data['email']; ?>"><?php echo $data['email']; ?></a></td>

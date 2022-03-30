@@ -32,6 +32,7 @@ else {
     include("database_connection.php");
 
     $query = "SELECT productName FROM Inventory";
+    /** @var $conn */
     $result = mysqli_query($conn, $query);
     ?>
 
@@ -93,9 +94,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result1) > 0) {
 //            echo("Entered IF");
             while ($row = mysqli_fetch_assoc($result1)) {
-                if($row['availability'] <= $removeAmount){
+                if($row['availability'] < $removeAmount){
                     echo '<script>alert("You are attempting to remove more items then currently available\nPlease Try again")</script>';
                     echo '<script>window.location= "remove_item.php"</script>';
+                }
+                if($row['availability'] = $removeAmount){
+
+//        echo("Remove All Button Selected");
+                    $delete_query = "DELETE FROM Inventory WHERE productName = '" . $productNameValue . "'";
+//        echo("\nDelete Query: ".$delete_query);
+                    $result3 = mysqli_query($conn, $delete_query);
+//        echo("\nResult3: ".mysqli_num_rows($result3));
+                    echo "<script>alert('All occurences of this item have been removed')</script>";
+                    echo '<script>window.location = "inventory.php"</script>';
                 }
                 else {
                     $updatedCount = $row['availability'] - $removeAmount;
@@ -109,8 +120,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //    echo ($query2);
             $result2 = mysqli_query($conn, $query2);
 //    echo ($result2);
-//    echo '<script>alert("Item has been deleted successfully\n\nRedirecting you inventory list")</script>';
-//    echo '<script>window.location = "inventory.php"</script>';
+    echo '<script>alert("Item has been deleted successfully\n\nRedirecting you to the inventory list")</script>';
+    echo '<script>window.location = "inventory.php"</script>';
         }
     }
     else if(isset($_POST['RemoveAll'])){
@@ -123,5 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //        echo("\nDelete Query: ".$delete_query);
         $result3 = mysqli_query($conn, $delete_query);
 //        echo("\nResult3: ".mysqli_num_rows($result3));
+        echo "<script>alert('All occurences of this item have been removed')</script>";
+        echo '<script>window.location = "inventory.php"</script>';
     }
 }

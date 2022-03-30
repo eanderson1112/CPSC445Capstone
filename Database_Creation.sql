@@ -42,8 +42,7 @@ CREATE TABLE Log
     lName            VARCHAR(15)        NOT NULL,
     email            VARCHAR(50)        NOT NULL,
     phone            VARCHAR(10)        NOT NULL,
-    PRIMARY KEY (checkOutID),
-    FOREIGN KEY (itemID) REFERENCES Inventory (itemID)
+    PRIMARY KEY (checkOutID)
 );
 
 # INSERT INTO Users
