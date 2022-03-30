@@ -43,7 +43,7 @@ if (isset($_SESSION["username"])) {
                         date_default_timezone_set("America/New_York")
                         ?>
                         <tr>
-                            <td><?php echo $itemID; ?></td>
+                            <td><?php echo $data['itemID']; ?></td>
                             <td><?php echo $data['productName']; ?></td>
                             <td><?php echo date_format(date_create($data['checkOutDate']),"d-M, Y g:i A"); ?></td>
                             <td><?php echo date_format(date_create($data['checkInDate']), "d-M, Y g:i A"); ?></td>

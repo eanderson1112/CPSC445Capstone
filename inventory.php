@@ -46,7 +46,7 @@ if (isset($_SESSION["username"])) {
                         foreach ($fetchData as $data) {
                             ?>
                             <tr>
-                                <td><?php echo $itemID; ?></td>
+                                <td><?php echo $data['itemID']; ?></td>
                                 <td><?php echo $data['productName']; ?></td>
                                 <td><?php echo $data['availability']; ?></td>
                             </tr>

@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>window.location = 'check_out.php'</script>";
         } else {
             // Inserts values into "Logs" table
-            $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), NULL, '$fName', '$lName', '$email', '$phone')";
+            $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), '', '$fName', '$lName', '$email', '$phone')";
             if (mysqli_query($conn, $sql)) {
 //                echo "New record created successfully";
             } else {

@@ -7,6 +7,7 @@ echo "<script>window.location = 'index.php';</script>";
 die();
 }
 ?>
+
 <html lang="en">
 <head>
     <link rel="stylesheet" href="style.css">
@@ -89,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             }
         }
-
         if (mysqli_num_rows($result2) > 0) {
 
             $query4 = "SELECT * FROM Inventory WHERE itemID = $barcode_value";
@@ -97,7 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_num_rows($result4) > 0) {
                 if($checkInDateExists == NULL) {
-                    echo "Check in date is Null";
 
                     $query3 = "UPDATE Log SET checkInDateTime = NOW() WHERE itemID = $barcode_value AND email = '".$email."'";
                     mysqli_query($conn, $query3);
