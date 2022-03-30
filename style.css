@@ -390,6 +390,10 @@ table, th, td {
     width: 60%
 }
 
+.width4 {
+    width: 8%;
+}
+
 .width5 {
     width: 12%
 }

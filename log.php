@@ -36,13 +36,13 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
             <table>
                 <thead>
                 <th class="width1">Item ID</th>
-                <th class="width2">Product Name</th>
+                <th class="width5">Product Name</th>
                 <th class="width5">Check Out Date</th>
                 <th class="width5">Check In Date</th>
-                <th class="width5">First Name</th>
-                <th class="width5">Last Name</th>
+                <th class="width4">First Name</th>
+                <th class="width4">Last Name</th>
                 <th class="width5">Email</th>
-                <th class="width3">Phone</th>
+                <th class="width4">Phone</th>
                 </thead>
                 <tbody>
                 <?php
@@ -50,12 +50,13 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
                 if (is_array($fetchData)){
                     $itemID = 1;
                     foreach ($fetchData as $data) {
+                        date_default_timezone_set("America/New_York")
                         ?>
                         <tr>
                             <td><?php echo $itemID; ?></td>
                             <td><?php echo $data['productName']; ?></td>
-                            <td><?php echo $data['checkOutDate']; ?></td>
-                            <td><?php echo $data['checkInDate']; ?></td>
+                            <td><?php echo date_format(date_create($data['checkOutDate']),"d-M, Y g:i A"); ?></td>
+                            <td><?php echo date_format(date_create($data['checkInDate']), "d-M, Y g:i A"); ?></td>
                             <td><?php echo $data['fName']; ?></td>
                             <td><?php echo $data['lName']; ?></td>
                             <td><a href="mailto:<?php echo $data['email']; ?>"><?php echo $data['email']; ?></a></td>
