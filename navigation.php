@@ -48,6 +48,7 @@ else if ($loginst == 2) { ?>
     <div class="topnav">
         <a href="check_out.php">Check Out</a>
         <a href="check_in.php">Check In</a>
+        <a href="log.php">Log</a>
         <a href="inventory.php">Inventory</a>
         <a href="add_item.php">Add Item</a>
         <a href="remove_item.php">Remove Item</a>

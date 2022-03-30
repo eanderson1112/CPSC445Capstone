@@ -99,6 +99,20 @@
     align-items: start;
 }
 
+.wrapper3 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    grid-auto-rows: 20px;
+    grid-template-areas:
+    "z z z z z z z z"
+    "a a a a a a a a"
+    "a a a a a a a a"
+    "a a a a a a a a";
+    align-items: start;
+}
+
+
 .left {
     float: left;
     padding-left: 30px;
@@ -117,6 +131,19 @@
     padding-left: 30px;
     padding-right: 20px;
     grid-area: e;
+    text-color: black;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px black;
+    font-family: Helvetica, "Helvetica Neue", Arial, serif;
+    background-color: white;
+}
+
+.center3 {
+    float: left;
+    padding-left: 30px;
+    padding-right: 20px;
+    grid-area: a;
     text-color: black;
     border: 2px solid black;
     border-radius: 15px;
@@ -336,8 +363,8 @@ input[type=tel] {
 
 .container2 {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: auto;
+    padding-left: auto;
     margin-right: auto;
     margin-left: auto
 }
@@ -352,15 +379,20 @@ table, th, td {
     margin-right: auto;
 }
 
-
-/*.width2 {*/
-/*    width 20%;*/
-/*}*/
+.width1 {
+    width: 6%;
+}
+.width2 {
+    width: 20%;
+}
 
 .width3 {
     width: 60%
 }
 
+.width5 {
+    width: 12%
+}
 /*width4 {*/
 /*    width: 20%;*/
 /*}*/
