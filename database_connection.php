@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost:3306";
+$servername = "imscapstone.mysql.database.azure.com";
 $database = "Inventory";
-$username = "root";
-$password = "Beagle26!";
+$username = "CPSC445Student@imscapstone";
+$password = "Troop7gator!";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -10,6 +10,4 @@ $conn = mysqli_connect($servername, $username, $password, $database);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-//echo "Connected successfully";
-
+echo "Connected successfully";
