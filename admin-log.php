@@ -77,6 +77,7 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
             <br>
         </div>
     </div>
+</div>
 </body>
 
 </html>
