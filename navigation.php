@@ -29,7 +29,7 @@ if (isset($_SESSION["username"])) {
     else {
         $loginst = 0;
 //        echo "loginst = ".$loginst;
-        echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
+        echo "<script>window.location = 'index.php';</script>";
         die();
     }
 }

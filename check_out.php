@@ -4,10 +4,10 @@
 session_start();
 
 if (isset($_SESSION["username"])) {
-    $username = $_SESSION["username"];
+    $usernlame = $_SESSION["username"];
 } else {
     // Redirects user if no user is logged in
-    echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/index.php';</script>";
+    echo "<script>window.location = 'index.php';</script>";
 }
 // All the HTML Form elements
 ?>

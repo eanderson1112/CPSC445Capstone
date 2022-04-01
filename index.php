@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Assigns session variables with username and authentication level.
                 $_SESSION["username"] = $username;
                 // Redirects user to the check_out page once authentication has been performed
-                echo "<script>window.location = 'http://localhost:63342/CPSC445Capstone/check_out.php';</script>";
+                echo "<script>window.location = 'check_out.php';</script>";
                 exit();
             } else {
                 // Warns user of incorrect field entry
