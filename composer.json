@@ -1,6 +1,6 @@
 {
   "name": "vendor_name/cpsc445capstone",
-  "description": "description",
+  "description": "This tool is designed for internal management use and should be treated as the intellectual property of it owner.",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [
