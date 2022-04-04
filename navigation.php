@@ -39,6 +39,7 @@ if ($loginst == 1) { ?>
     <div class="topnav">
         <a href="check_out.php">Check Out</a>
         <a href="check_in.php">Check In</a>
+        <a href="standard-log.php">Log</a>
         <a href="inventory.php">Inventory</a>
         <a href="logout.php">Sign Out</a>
     </div>

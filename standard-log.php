@@ -5,7 +5,9 @@ session_start();
 
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
+    echo ("Entered If Statement \n Session ID set");
 } else {
+    echo ("Entered else statement");
     echo "<script>window.location = 'index.php';</script>";
     die();
 }
@@ -29,7 +31,7 @@ if (isset($_SESSION["username"])) {
         <div class="container2">
             <table>
                 <thead>
-                <th class="width2">Item ID</th>
+                <th class="width5">Item ID</th>
                 <th class="width5">Product Name</th>
                 <th class="width5">Check Out Date</th>
                 <th class="width5">Check In Date</th>
@@ -46,7 +48,11 @@ if (isset($_SESSION["username"])) {
                             <td><?php echo $data['itemID']; ?></td>
                             <td><?php echo $data['productName']; ?></td>
                             <td><?php echo date_format(date_create($data['checkOutDate']),"d-M, Y g:i A"); ?></td>
-                            <td><?php echo date_format(date_create($data['checkInDate']), "d-M, Y g:i A"); ?></td>
+                            <td><?php if ($data['checkInDateTime'] == NULL) {
+                                    echo "<i style='color: red'>Checked Out</i>";
+                                } else {
+                                    echo date_format(date_create($data['checkInDateTime']), "d-M, Y g:i:s A");
+                                } ?></td>
                         </tr>
                         <?php
                         $itemID++;

@@ -18,7 +18,7 @@ function fetch_data($db, $tableName, $columns)
     } else {
         $email = $_SESSION['email'];
         $columnName = implode(", ", $columns);
-        $query = "SELECT " . $columnName . " FROM $tableName" . "WHERE email = $email" . "ORDER BY checkOutID DESC";
+        $query = "SELECT * FROM Log WHERE email = '".$email."' ORDER BY checkOutID DESC";
         $result = $db->query($query);
         if ($result == true) {
             if ($result->num_rows > 0) {

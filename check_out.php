@@ -106,18 +106,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             // Inserts values into "Logs" table
             $sql = "INSERT INTO Log VALUES(NULL, $itemID_result, '$productName_result', NOW(), NULL, '$fName', '$lName', '$email', '$phone')";
-            if (mysqli_query($conn, $sql)) {
-//                echo "New record created successfully";
-            } else {
-                // Error checking
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
+//            if
+            (mysqli_query($conn, $sql));
+//            {
+////                echo "New record created successfully";
+//            } else {
+//                // Error checking
+//                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+//            }
             //If values is added, then count is subtracted by 1
             $availability_result -= 1;
 //            echo("Current Count: " . $availability_result);
             $update_count = "UPDATE Inventory SET availability = $availability_result WHERE itemID = $barcode_value";
             mysqli_query($conn, $update_count);
-            echo "<script>alert('Item has ben ')</script>";
+            echo "<script>alert('Item has been checked out and logged')</script>";
         }
 
     } else {
