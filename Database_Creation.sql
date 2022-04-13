@@ -44,21 +44,3 @@ CREATE TABLE Log
     phone            VARCHAR(10)        NOT NULL,
     PRIMARY KEY (checkOutID)
 );
-
-# INSERT INTO Users
-# VALUES ('eanderson1112', 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu', 'somesalt', 'thisisatest', '7577084183');
-# INSERT INTO Users
-# VALUES ('cchris1985', 'Captain', 'Chris', 'captain.chris@cnu.edu', 'apassword', 'somesalt', '7578675309');
-# INSERT INTO Users
-# VALUES ('ckreider', 'Chris', 'Kreider', 'chris.kreider@cnu.edu', 'somepassword', 'somesalt', '8005882300');
-#
-# INSERT INTO Inventory
-# VALUES (00001, 'Canon 90D', TRUE);
-# INSERT INTO Inventory
-# VALUES (00002, 'Behringer Xenyx 802USB', FALSE);
-# INSERT INTO Inventory
-# VALUES (00003, 'Behringer B85', False);
-#
-# INSERT INTO Log
-# VALUES (000001, 00002, 'Canon 90D', '2022-02-02', 'eanderson1112', 'Elijah', 'Anderson', 'elijah.anderson.18@cnu.edu',
-#         '7577084183');

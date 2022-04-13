@@ -1,11 +1,15 @@
 <?php
+//Calls required file to display table for admin view
 include("display_log_admin.php");
 
+//Ensures session has started
 session_start();
 
+//Identifies the user who is logged in, and confirms their permissions level
 if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
     $username = $_SESSION["username"];
 } else {
+    //If user is not logged in, redirect to login page
     echo "<script>window.location = 'index.php';</script>";
     die();
 }
@@ -20,6 +24,7 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
     </title>
     <div class="welcome"><h1>WELCOME TO THE INTERNAL MANAGEMENT SYSTEM</h1></div>
     <?php
+    //Calls navigation file to display for a specific user type
     include("navigation.php");
     ?>
 </head>
@@ -40,6 +45,7 @@ if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
                 </thead>
                 <tbody>
                 <?php
+                //Fetches data from the table created in the display_admin_log.php file, and extracts the data from the array
                 /** @var $fetchData */
                 if (is_array($fetchData)){
                     $itemID = 1;
