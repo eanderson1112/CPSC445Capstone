@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($result2) > 0) {
             while ($row3 = mysqli_fetch_assoc($result2)){
                 $checkInDateExists = $row3['checkInDateTime'];
+                $productName = $row3['productName'];
                 break;
             }
         }
@@ -105,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $updatedCount = $row3['availability'] + 1;
                         $query5 = "UPDATE Inventory SET availability = $updatedCount WHERE itemID = $barcode_value";
                         mysqli_query($conn, $query5);
+                        echo '<script>alert("Thank you for returning the")</script>';
                     }
                 }
                 else {
