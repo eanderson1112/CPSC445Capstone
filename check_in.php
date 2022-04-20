@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $updatedCount = $row3['availability'] + 1;
                         $query5 = "UPDATE Inventory SET availability = $updatedCount WHERE itemID = $barcode_value";
                         mysqli_query($conn, $query5);
-                        echo '<script>alert("Thank you for returning the")</script>';
+                        echo '<script>alert("Thank you for checking in your item")</script>';
                     }
                 }
                 else {
