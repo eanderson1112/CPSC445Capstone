@@ -1,6 +1,9 @@
 <?php
 // Initialize Session Variables
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
     $username = $_SESSION["username"];

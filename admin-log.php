@@ -3,7 +3,10 @@
 include("display_log_admin.php");
 
 //Ensures session has started
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 //Identifies the user who is logged in, and confirms their permissions level
 if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {

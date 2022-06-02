@@ -1,7 +1,10 @@
 <?php
 include("display_inventory.php");
 
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 if (isset($_SESSION["username"])) {
     $username = $_SESSION["username"];
@@ -41,6 +44,7 @@ if (isset($_SESSION["username"])) {
                     </thead>
                     <tbody>
                     <?php
+                    if (isset($fetchData)){
                     if (is_array($fetchData)){
                         $itemID = 1;
                         foreach ($fetchData as $data) {
@@ -60,6 +64,7 @@ if (isset($_SESSION["username"])) {
                         </td>
                     <tr>
                         <?php
+                        }
                         } ?>
                     </tbody>
                     <br>

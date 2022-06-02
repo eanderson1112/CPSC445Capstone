@@ -1,8 +1,8 @@
 <?php
-$servername = "imscapstone.mysql.database.azure.com";
-$database = "Inventory";
-$username = "CPSC445Student@imscapstone";
-$password = "Troop7gator!";
+$servername = "gocoastal.org";
+$database = "dbbp4diqsg4wen";
+$username = "upwmg2keig6pn";
+$password = "G0C0astal101";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);

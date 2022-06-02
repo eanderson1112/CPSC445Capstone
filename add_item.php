@@ -1,6 +1,9 @@
 <?php
 //Initialize Session Variables
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 
 //Identifies the user who is logged in, and confirms their permissions level
 if (isset($_SESSION["username"]) && $_SESSION['authentication'] == "Admin") {
@@ -39,6 +42,12 @@ else {
             </label>
                 <label>
                 <input type="number" id="amount" name="amount" value="amount" placeholder="Count">
+                </label>
+                <label>
+                    <input type="text" id="serialNum" name="serialNum" value="serialID" placeholder="Serial Number">
+                </label>
+                <label>
+                    <input type="number" id="specialCount" name="specialCount" value="specialValue" placeholder="If item falls below value: "
                 </label>
                     <br><br>
                 <p>Is this product under warranty?</p>

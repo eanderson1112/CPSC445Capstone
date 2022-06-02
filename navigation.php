@@ -13,7 +13,10 @@ include("database_connection.php");
 //echo("Authentication Status".$_SESSION['authentication']);
 $auth_status = $_SESSION['authentication'];
 // Initialize Session
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
 $loginst = NULL;
 
 ////Checks to see if a username that is logged in the $_SESSION['username'] is in the database
