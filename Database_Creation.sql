@@ -25,6 +25,8 @@ CREATE TABLE Inventory
     itemID         INT AUTO_INCREMENT NOT NULL,
     productName    VARCHAR(50)        NOT NULL,
     warrantyStatus BOOLEAN,
+    warrantyDate DATE,
+    serialNumber VARCHAR(100),
     availability   INT                NOT NULL,
     CONSTRAINT itemID_pk
         PRIMARY KEY (itemID)
@@ -38,6 +40,7 @@ CREATE TABLE Log
     productName      VARCHAR(50)        NOT NULL,
     checkOutDateTime DATETIME           NOT NULL,
     checkInDateTime  DATETIME,
+    reason VARCHAR(8000),
     fName            VARCHAR(10)        NOT NULL,
     lName            VARCHAR(15)        NOT NULL,
     email            VARCHAR(50)        NOT NULL,

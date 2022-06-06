@@ -43,19 +43,20 @@ else {
                 <label>
                 <input type="number" id="amount" name="amount" value="amount" placeholder="Count">
                 </label>
+                <br><br>
                 <label>
-                    <input type="text" id="serialNum" name="serialNum" value="serialID" placeholder="Serial Number">
+                    <input type="text" id="serialNum" name="serialNum" value="" placeholder="Serial Number">
                 </label>
                 <label>
-                    <input type="number" id="specialCount" name="specialCount" value="specialValue" placeholder="If item falls below value: "
+                    <input type="number" id="specialCount" name="specialCount" min="0" value="" placeholder="Item Limit"
                 </label>
                     <br><br>
                 <p>Is this product under warranty?</p>
-                <input type="radio" id="yes" name="warrantyStatus" value="yes">
+                <input type="radio" id='yes' name='warrantyStatus' value='1' placeholder="Yes" />
                 <label for="yes">Yes</label><br>
-                <input type="radio" id="no" name="warrantyStatus" value="no">
+                <input type="radio" id='no' name='warrantyStatus' value=2 />
                 <label for="no">No</label><br>
-                <br>
+                <input data-show-if="warrantyStatus = '1'" type="date" id="warrantyDate" name="warrantyDate" value="" placeholder="Warranty Expiration">
                 <br><br>
                 <input type="submit" class="button" value="Submit" name="AddItem">
                 <input type="reset" class="button3" value="Clear" name="ClearFields">
@@ -77,6 +78,8 @@ if (isset($_POST['AddItem'])){
     $productName = $_POST['itemName'];
     $productCount = $_POST['amount'];
     $warrantyStatus = $_POST['warrantyStatus'];
+    $warrantyDate = $_POST['warrantyDate'];
+    $serialNumber = $_POST['serialNum'];
 
     //Sets the warranty status option as a boolean based off of user input
     if ($warrantyStatus = "yes"){
@@ -107,7 +110,7 @@ if (isset($_POST['AddItem'])){
     }
     else {
         //If this item does not exist already, it is then added to the database
-        $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $productCount)";
+        $sql = "INSERT INTO Inventory VALUES (itemID, '$productName', $warrantyStatus, $warrantyDate, $serialNumber, $productCount)";
         $result3 = mysqli_query($conn, $sql);
         echo "<script>alert('Item Added To Database')</script>";
     }

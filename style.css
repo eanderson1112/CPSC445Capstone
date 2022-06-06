@@ -51,7 +51,6 @@
 }
 
 .topnav a {
-    float: center;
     color: darkslateblue;
     border: 0 !important;
     text-align: center;
@@ -244,6 +243,15 @@ input[type=radio] {
     border: none;
     text-decoration: none;
     outline: none;
+    border-bottom: 2px solid dodgerblue;
+}
+
+input[type=date] {
+    font-size: 25px;
+    border: none;
+    text-decoration: none;
+    outline: none;
+    font-family: serif;
     border-bottom: 2px solid dodgerblue;
 }
 
